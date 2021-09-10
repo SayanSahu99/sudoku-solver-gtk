@@ -25,8 +25,8 @@ OBJS= main.o
 all: $(OBJS)
 	$(LD) -o $(TARGET) $(OBJS) $(LDFLAGS)
     
-main.o: sudoku_main.c
-	$(CC) -c $(CCFLAGS) sudoku_main.c $(GTKLIB) -o main.o
+main.o: src/sudoku_main.c
+	$(CC) -c $(CCFLAGS) src/sudoku_main.c $(GTKLIB) -o main.o
     
 clean:
 	rm -f *.o $(TARGET)
