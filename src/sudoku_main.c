@@ -1,12 +1,3 @@
-/* ********************************************************************************************************
- * Sudoku solver application                                                                              *
- *                                                                                                        *
- * Created on: 22-March-2020                                                                                *
- *                                                                                                        *
- * Developed by : Suyash Phatak ,Sayan Sahu, Sharath B Pai, Spandan Pandey, Pranhav Vanarote, Yash Verma  *
- *                                                                                                        *
- * ********************************************************************************************************/
-
 #include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -267,7 +258,7 @@ void on_open_menu_item_activate(){
 		path = g_file_get_path(file);
 		
 		
-		if(strcmp(path, "/home/lenovo/cproject/sudoku_project/Sudoku Puzzle/sudoku1") && strcmp(path, "/home/lenovo/cproject/sudoku_project/Sudoku Puzzle/sudoku2") && strcmp(path, "/home/lenovo/cproject/sudoku_project/Sudoku Puzzle/sudoku3") && strcmp(path, "/home/lenovo/cproject/sudoku_project/Sudoku Puzzle/sudoku4") && strcmp(path, "/home/lenovo/cproject/sudoku_project/Sudoku Puzzle/sudoku5") && strcmp(path, "/home/lenovo/cproject/sudoku_project/Sudoku Puzzle/sudoku6")){
+		if(strcmp(path, "Sudoku Puzzle/sudoku1") && strcmp(path, "Sudoku Puzzle/sudoku2") && strcmp(path, "/Sudoku Puzzle/sudoku3") && strcmp(path, "/sudoku_project/Sudoku Puzzle/sudoku4") && strcmp(path, "sudoku_project/Sudoku Puzzle/sudoku5") && strcmp(path, "Sudoku Puzzle/sudoku6")){
 			gtk_widget_destroy(dialog);
 			GtkWidget *dlg = gtk_dialog_new_with_buttons ("Invalid File",GTK_WINDOW(window), GTK_DIALOG_MODAL,("_OK"),GTK_RESPONSE_ACCEPT,NULL);
 			guint resp;
@@ -313,7 +304,7 @@ int main(int argc, char *argv[]) {
   builder = gtk_builder_new();
   
   //Getting the glade file
-  gtk_builder_add_from_file (builder, "/home/lenovo/cproject/sudoku_project/glade/sudoku_main.glade", NULL);
+  gtk_builder_add_from_file (builder, "glade/sudoku_main.glade", NULL);
   
   window = GTK_WIDGET(gtk_builder_get_object(builder, "window0"));  
   gtkbox = GTK_WIDGET(gtk_builder_get_object(builder, "gtkbox0"));
