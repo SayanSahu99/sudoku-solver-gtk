@@ -1,7 +1,7 @@
 #include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <ctype.h>'
 
 #define SIZE 9
 
@@ -238,6 +238,26 @@ void on_clear_menu_item_activate()
 	  }	
 }
 
+int checkValidFile(char *path) {
+	FILE *f = fopen(path, "r");
+	int count = 0;
+	char ch;
+	if(f == NULL) {
+		return 0;
+	}
+	while((ch=fgetc(f))!=EOF) {
+		if(!isdigit(ch)) {
+			return 0;
+		}
+		count++;
+	}
+	if(count != 81) {
+		return 0;
+	}
+	fclose(f);
+	return 1;
+}
+
 // FILE -> Open
 void on_open_menu_item_activate(){
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
@@ -258,7 +278,7 @@ void on_open_menu_item_activate(){
 		path = g_file_get_path(file);
 		
 		
-		if(strcmp(path, "Sudoku Puzzle/sudoku1") && strcmp(path, "Sudoku Puzzle/sudoku2") && strcmp(path, "/Sudoku Puzzle/sudoku3") && strcmp(path, "/sudoku_project/Sudoku Puzzle/sudoku4") && strcmp(path, "sudoku_project/Sudoku Puzzle/sudoku5") && strcmp(path, "Sudoku Puzzle/sudoku6")){
+		if(checkValidFile(path)) {
 			gtk_widget_destroy(dialog);
 			GtkWidget *dlg = gtk_dialog_new_with_buttons ("Invalid File",GTK_WINDOW(window), GTK_DIALOG_MODAL,("_OK"),GTK_RESPONSE_ACCEPT,NULL);
 			guint resp;
@@ -266,7 +286,7 @@ void on_open_menu_item_activate(){
 			if (resp == GTK_RESPONSE_ACCEPT){}
 			gtk_widget_destroy (dlg);
 			return;
-			}
+		}
 			
 		// Open and read the selected file	   
 		f = fopen(path, "r");
@@ -279,12 +299,11 @@ void on_open_menu_item_activate(){
 				a[i][j] = c;
 				}
 			}
-		sol++;
-		print_sudoku();
-		fclose(f);
-		
+			sol++;
+			print_sudoku();
+			fclose(f);
 		}
-                gtk_widget_destroy(dialog);
+        gtk_widget_destroy(dialog);
 	}
 
 // FILE -> Quit
